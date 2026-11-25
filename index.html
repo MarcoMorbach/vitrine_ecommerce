@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vitrine — Tudo o que você procura, num só lugar</title>
+  <meta name="description" content="Protótipo de e-commerce Vitrine: ofertas, frete grátis acima de R$ 99, parcelamento em até 10x sem juros e 5% de desconto no Pix.">
+  <meta name="theme-color" content="#1b1442">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="Vitrine — Protótipo de E-commerce">
+  <meta property="og:description" content="Ofertas, frete grátis e compra rápida e segura. Projeto acadêmico em HTML, CSS, JavaScript e LocalStorage.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Aplica o tema salvo antes da pintura para evitar "piscar" (FOUC) -->
+  <script>
+    (function () {
+      try {
+        var t = JSON.parse(localStorage.getItem('vitrine:theme'));
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { /* armazenamento indisponível: segue o tema do sistema */ }
+    })();
+  </script>
+  <!-- Scripts com defer: baixam em paralelo e executam na ordem, sem bloquear a renderização -->
+  <script defer src="js/utils.js"></script>
+  <script defer src="js/data.js"></script>
+  <script defer src="js/store.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/views/home.js"></script>
+  <script defer src="js/views/search.js"></script>
+  <script defer src="js/views/product.js"></script>
+  <script defer src="js/views/cart.js"></script>
+  <script defer src="js/views/checkout.js"></script>
+  <script defer src="js/views/account.js"></script>
+  <script defer src="js/views/pages.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
+
+  <!-- Sprite de ícones SVG: um único bloco reutilizado via <use> (menos requisições) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.4-9.2C1.2 7.8 3.5 4 7.2 4c2 0 3.6 1.1 4.8 2.7C13.2 5.1 14.8 4 16.8 4c3.7 0 6 3.8 4.6 7.3-1.9 4.6-9.4 9.2-9.4 9.2z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 5h13v11H1zM14 9h4l3 3v4h-7"/><circle cx="5.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
+    <symbol id="i-pix" viewBox="0 0 24 24"><path d="M12 2.8 21.2 12 12 21.2 2.8 12z"/><path d="M7.5 12h9M12 7.5v9"/></symbol>
+    <symbol id="i-barcode" viewBox="0 0 24 24"><path d="M3 5v14M6 5v14M10 5v14M13 5v14M17 5v14M21 5v14"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+    <symbol id="i-return" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-thumb" viewBox="0 0 24 24"><path d="M7 10v11H3V10zM7 10l4-8a3 3 0 0 1 3 3v4h6a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18.6 21H7"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></symbol>
+  </svg>
+
+  <header class="site-header" id="top">
+    <div class="container header-main">
+      <button class="icon-btn menu-btn" type="button" data-action="open-menu" aria-label="Abrir menu de categorias" aria-controls="menu-drawer">
+        <svg class="i" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+
+      <a href="#/" class="logo" aria-label="Vitrine, página inicial">
+        <svg viewBox="0 0 32 32" class="logo-mark" aria-hidden="true">
+          <path d="M6 10h20l-1.6 16.2A2 2 0 0 1 22.4 28H9.6a2 2 0 0 1-2-1.8z" fill="#8b7bff"/>
+          <path d="M11 12V9a5 5 0 0 1 10 0v3" fill="none" stroke="#ffd166" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="m11.5 16 4.5 7 4.5-7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo-text">vitrine</span>
+      </a>
+
+      <button class="location" type="button" data-action="open-cep" aria-haspopup="dialog">
+        <svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>
+        <span class="location-text"><small>Enviar para</small><strong id="cep-label">Informe seu CEP</strong></span>
+      </button>
+
+      <form class="search" role="search" id="search-form" autocomplete="off">
+        <label for="search-cat" class="sr-only">Buscar na categoria</label>
+        <select id="search-cat" class="search-cat">
+          <option value="">Todos</option>
+        </select>
+        <div class="search-field">
+          <label for="search-input" class="sr-only">Buscar produtos, marcas e muito mais</label>
+          <input id="search-input" type="search" name="q" placeholder="Buscar produtos, marcas e muito mais…"
+                 role="combobox" aria-expanded="false" aria-controls="search-suggest" aria-autocomplete="list" enterkeyhint="search">
+          <kbd class="search-kbd" aria-hidden="true">/</kbd>
+          <ul id="search-suggest" class="suggest" role="listbox" aria-label="Sugestões de busca" hidden></ul>
+        </div>
+        <button type="submit" class="search-btn" aria-label="Buscar">
+          <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+        </button>
+      </form>
+
+      <nav class="header-actions" aria-label="Conta e carrinho">
+        <a href="#/conta" class="hdr-link" id="account-link">
+          <svg class="i" aria-hidden="true"><use href="#i-user"/></svg>
+          <span class="hdr-text"><small id="account-greet">Olá, faça seu login</small><strong>Conta e listas</strong></span>
+        </a>
+        <a href="#/pedidos" class="hdr-link hide-lg-down">
+          <span class="hdr-text"><small>Devoluções</small><strong>e Pedidos</strong></span>
+        </a>
+        <a href="#/favoritos" class="icon-btn hdr-fav" aria-label="Favoritos">
+          <svg class="i" aria-hidden="true"><use href="#i-heart"/></svg>
+          <span class="badge" id="fav-count" hidden>0</span>
+        </a>
+        <a href="#/carrinho" class="cart-link" id="cart-link" aria-label="Carrinho, 0 itens">
+          <span class="cart-icon">
+            <svg class="i" aria-hidden="true"><use href="#i-cart"/></svg>
+            <span class="badge badge-cart" id="cart-count">0</span>
+          </span>
+          <span class="cart-label">Carrinho</span>
+        </a>
+      </nav>
+    </div>
+
+    <nav class="header-nav" aria-label="Navegação principal">
+      <div class="container nav-inner">
+        <button class="nav-all" type="button" data-action="open-menu" aria-controls="menu-drawer">
+          <svg class="i" aria-hidden="true"><use href="#i-menu"/></svg> Todas as categorias
+        </button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#/ofertas"><svg class="i" aria-hidden="true"><use href="#i-bolt"/></svg> Ofertas do dia</a></li>
+          <li><a href="#/busca?ordem=vendidos">Mais vendidos</a></li>
+          <li><a href="#/busca?frete=1">Frete grátis</a></li>
+          <li><a href="#/categoria/eletronicos">Eletrônicos</a></li>
+          <li><a href="#/categoria/informatica">Informática</a></li>
+          <li><a href="#/categoria/casa">Casa e Cozinha</a></li>
+          <li><a href="#/categoria/games">Games</a></li>
+          <li><a href="#/ajuda">Ajuda</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" data-action="toggle-theme" aria-pressed="false">
+          <svg class="i icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="i icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <span class="theme-label">Tema escuro</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div id="app">
+      <!-- Conteúdo mostrado se o JavaScript estiver desativado -->
+      <noscript>
+        <div class="container section">
+          <h1>Ative o JavaScript</h1>
+          <p>Este protótipo usa JavaScript para montar as páginas. Ative-o no navegador para continuar.</p>
+        </div>
+      </noscript>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="#top" class="back-top" data-action="back-top">
+      <svg class="i" aria-hidden="true"><use href="#i-up"/></svg> Voltar ao início
+    </a>
+    <div class="container footer-grid">
+      <section aria-labelledby="ft-1">
+        <h2 id="ft-1">Conheça a Vitrine</h2>
+        <ul>
+          <li><a href="#/ajuda">Sobre o protótipo</a></li>
+          <li><a href="#/ofertas">Ofertas do dia</a></li>
+          <li><a href="#/busca?ordem=vendidos">Mais vendidos</a></li>
+        </ul>
+      </section>
+      <section aria-labelledby="ft-2">
+        <h2 id="ft-2">Ajuda</h2>
+        <ul>
+          <li><a href="#/pedidos">Meus pedidos</a></li>
+          <li><a href="#/ajuda#trocas">Trocas e devoluções</a></li>
+          <li><a href="#/ajuda#entrega">Prazos de entrega</a></li>
+          <li><a href="#/ajuda#pagamento">Formas de pagamento</a></li>
+        </ul>
+      </section>
+      <section aria-labelledby="ft-3">
+        <h2 id="ft-3">Minha conta</h2>
+        <ul>
+          <li><a href="#/conta">Entrar ou cadastrar</a></li>
+          <li><a href="#/favoritos">Favoritos</a></li>
+          <li><a href="#/carrinho">Carrinho</a></li>
+        </ul>
+      </section>
+      <section aria-labelledby="ft-4">
+        <h2 id="ft-4">Formas de pagamento</h2>
+        <ul class="pay-badges" aria-label="Aceitamos">
+          <li><svg class="i" aria-hidden="true"><use href="#i-pix"/></svg> Pix</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-card"/></svg> Cartão</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-barcode"/></svg> Boleto</li>
+        </ul>
+        <p class="footer-secure"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg> Site seguro (HTTPS via GitHub Pages)</p>
+      </section>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p><strong>Vitrine</strong> — protótipo acadêmico de e-commerce. Nenhuma compra é real e nenhum dado sai do seu navegador.</p>
+        <p>Feito com HTML5, CSS3, JavaScript e LocalStorage · Hospedado no GitHub Pages</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== Diálogos (elemento nativo <dialog>: foco preso e tecla Esc já acessíveis) ====== -->
+  <dialog class="drawer drawer-left" id="menu-drawer" aria-labelledby="menu-title">
+    <div class="drawer-head drawer-head-brand">
+      <svg class="i" aria-hidden="true"><use href="#i-user"/></svg>
+      <h2 id="menu-title"><span id="menu-greet">Olá, faça seu login</span></h2>
+      <button class="icon-btn" type="button" data-action="close-dialog" aria-label="Fechar menu">
+        <svg class="i" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <nav class="drawer-body" aria-label="Categorias">
+      <h3 class="drawer-section">Compre por categoria</h3>
+      <ul class="drawer-list" id="menu-categories"></ul>
+      <h3 class="drawer-section">Destaques</h3>
+      <ul class="drawer-list">
+        <li><a href="#/ofertas">Ofertas do dia</a></li>
+        <li><a href="#/busca?ordem=vendidos">Mais vendidos</a></li>
+        <li><a href="#/busca?frete=1">Frete grátis</a></li>
+      </ul>
+      <h3 class="drawer-section">Ajuda e configurações</h3>
+      <ul class="drawer-list">
+        <li><a href="#/conta">Sua conta</a></li>
+        <li><a href="#/pedidos">Seus pedidos</a></li>
+        <li><a href="#/favoritos">Favoritos</a></li>
+        <li><a href="#/ajuda">Central de ajuda</a></li>
+      </ul>
+    </nav>
+  </dialog>
+
+  <dialog class="modal" id="cep-dialog" aria-labelledby="cep-title">
+    <form method="dialog" class="modal-inner" id="cep-form" novalidate>
+      <div class="modal-head">
+        <h2 id="cep-title">Selecione onde quer receber suas compras</h2>
+        <button class="icon-btn" type="button" data-action="close-dialog" aria-label="Fechar">
+          <svg class="i" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+      <p class="muted">Você verá custos e prazos de entrega precisos em toda a loja.</p>
+      <div class="field">
+        <label for="cep-input">CEP</label>
+        <input id="cep-input" name="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9" aria-describedby="cep-help cep-error">
+        <small id="cep-help" class="help"><a href="https://buscacepinter.correios.com.br/" target="_blank" rel="noopener">Não sei meu CEP</a></small>
+        <small id="cep-error" class="error" role="alert"></small>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-action="close-dialog">Cancelar</button>
+        <button type="submit" class="btn btn-primary" value="ok">Usar este CEP</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="drawer drawer-right" id="cart-drawer" aria-labelledby="cart-drawer-title">
+    <div class="drawer-head">
+      <h2 id="cart-drawer-title"><svg class="i ok" aria-hidden="true"><use href="#i-check"/></svg> Adicionado ao carrinho</h2>
+      <button class="icon-btn" type="button" data-action="close-dialog" aria-label="Fechar">
+        <svg class="i" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="cart-drawer-body"></div>
+  </dialog>
+
+  <!-- Região de notificações: leitores de tela anunciam o conteúdo (WCAG 4.1.3) -->
+  <div class="toasts" id="toasts" role="status" aria-live="polite" aria-atomic="false"></div>
+  <div class="sr-only" id="announcer" aria-live="polite"></div>
+</body>
+</html>

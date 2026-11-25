@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<defs><radialGradient id="bg" cx=".3" cy=".3" r=".9"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e1e5dc"/></radialGradient><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#819169"/><stop offset="1" stop-color="#465133"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+<linearGradient id="rgb" x1="0" x2="1"><stop offset="0" stop-color="#7c6bff"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+<rect width="400" height="400" fill="url(#bg)"/><g transform="translate(200 200) scale(1.55) translate(-200 -210)">
+<path d="M150 64 q50 32 100 0 l74 32 l-24 64 l-38 -14 v186 h-124 v-186 l-38 14 l-24 -64z" fill="#6b7d4f" />
+<path d="M150 64 q50 32 100 0 l74 32 l-24 64 l-38 -14 v186 h-124 v-186 l-38 14 l-24 -64z" fill="url(#sheen)"/>
+<path d="M150 64 q50 34 100 0" stroke="#4b5837" stroke-width="9" fill="none"/>
+<path d="M138 150 v20 M262 150 v20" stroke="#4b5837" stroke-width="2" opacity=".4"/></g>
+</svg>

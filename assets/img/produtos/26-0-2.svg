@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f8"/><stop offset=".72" stop-color="#e6e8ef"/><stop offset=".72" stop-color="#dcdfe8"/><stop offset="1" stop-color="#d3d7e2"/></linearGradient><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c3a44e"/><stop offset="1" stop-color="#78601f"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+<linearGradient id="rgb" x1="0" x2="1"><stop offset="0" stop-color="#7c6bff"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+<rect width="400" height="400" fill="url(#bg)"/><ellipse cx="200" cy="352" rx="128" ry="13" fill="#0b1020" opacity="0.1"/><g transform="translate(200 214) rotate(-9) scale(.86) translate(-200 -200)">
+<defs><linearGradient id="lens" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f3a2e"/><stop offset="1" stop-color="#3f6b55"/></linearGradient></defs>
+<path d="M72 166 h256" stroke="#b8942f" stroke-width="7" stroke-linecap="round"/>
+<path d="M72 168 q-4 84 64 86 q52 0 54 -56 q0 -30 -30 -30z" fill="url(#lens)" stroke="#b8942f" stroke-width="6"/>
+<g transform="translate(400 0) scale(-1 1)"><path d="M72 168 q-4 84 64 86 q52 0 54 -56 q0 -30 -30 -30z" fill="url(#lens)" stroke="#b8942f" stroke-width="6"/></g>
+<path d="M184 176 q16 -14 32 0" stroke="#b8942f" stroke-width="6" fill="none"/>
+<path d="M88 186 q14 -10 32 -8" stroke="#fff" stroke-width="5" opacity=".35" fill="none" stroke-linecap="round"/>
+<path d="M240 186 q14 -10 32 -8" stroke="#fff" stroke-width="5" opacity=".35" fill="none" stroke-linecap="round"/></g>
+</svg>

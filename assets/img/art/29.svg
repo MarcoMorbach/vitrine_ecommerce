@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<defs><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2ae5d"/><stop offset="1" stop-color="#9c682a"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+<linearGradient id="rgb" x1="0" x2="1"><stop offset="0" stop-color="#7c6bff"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+<ellipse cx="200" cy="348" rx="128" ry="13" fill="#0b1020" opacity="0.14"/><g>
+<rect x="128" y="114" width="34" height="58" rx="12" fill="#1f222b"/>
+<rect x="104" y="168" width="82" height="150" rx="14" fill="#f0a040" opacity=".92"/>
+<rect x="114" y="216" width="62" height="40" rx="4" fill="#fff" opacity=".9"/>
+<text x="145" y="241" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" fill="#a8702d" text-anchor="middle">VIT C</text>
+<rect x="222" y="90" width="30" height="44" rx="5" fill="#a8702d"/>
+<rect x="236" y="90" width="36" height="9" rx="4.5" fill="#a8702d"/>
+<rect x="200" y="130" width="76" height="188" rx="18" fill="#fff" stroke="#e2e5ea" stroke-width="2"/>
+<rect x="212" y="200" width="52" height="56" rx="5" fill="#f9d9b3"/>
+<rect x="284" y="238" width="84" height="80" rx="16" fill="#f5c183"/>
+<rect x="278" y="222" width="96" height="26" rx="9" fill="#a8702d"/></g>
+</svg>

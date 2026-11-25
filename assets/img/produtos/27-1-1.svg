@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<defs><radialGradient id="bg" cx=".3" cy=".3" r=".9"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f7e4e9"/></radialGradient><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dd8ea0"/><stop offset="1" stop-color="#8c4f5d"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+<linearGradient id="rgb" x1="0" x2="1"><stop offset="0" stop-color="#7c6bff"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+<rect width="400" height="400" fill="url(#bg)"/><g transform="translate(200 200) scale(1.55) translate(-200 -210)">
+<rect x="162" y="54" width="76" height="62" rx="12" fill="#1f222b"/>
+<rect x="182" y="112" width="36" height="32" rx="4" fill="#d4af37"/>
+<rect x="124" y="140" width="152" height="182" rx="26" fill="#d77a8f" opacity=".88"/>
+<rect x="136" y="196" width="128" height="114" rx="18" fill="#975564" opacity=".45"/>
+<rect x="140" y="154" width="14" height="150" rx="7" fill="#fff" opacity=".4"/>
+<rect x="160" y="216" width="80" height="44" rx="5" fill="#fff" opacity=".92"/>
+<text x="200" y="243" font-family="Georgia,serif" font-size="13" letter-spacing="2" fill="#1f222b" text-anchor="middle">ESSENCE</text></g>
+</svg>

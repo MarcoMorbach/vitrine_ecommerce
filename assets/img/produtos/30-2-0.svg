@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<defs><radialGradient id="bg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f9ecef"/></radialGradient><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dd8ea0"/><stop offset="1" stop-color="#8c4f5d"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+<linearGradient id="rgb" x1="0" x2="1"><stop offset="0" stop-color="#7c6bff"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+<rect width="400" height="400" fill="url(#bg)"/><ellipse cx="200" cy="348" rx="128" ry="13" fill="#0b1020" opacity="0.1"/><g>
+<path d="M178 54 q22 -28 44 0" stroke="#975564" stroke-width="8" fill="none"/>
+<rect x="160" y="50" width="80" height="50" rx="14" fill="#975564"/>
+<rect x="152" y="94" width="96" height="236" rx="32" fill="#d77a8f"/>
+<rect x="152" y="94" width="96" height="236" rx="32" fill="url(#sheen)"/>
+<rect x="152" y="128" width="96" height="10" fill="#975564" opacity=".35"/>
+<rect x="168" y="150" width="12" height="160" rx="6" fill="#fff" opacity=".35"/></g>
+</svg>

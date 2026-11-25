@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f4f8"/><stop offset=".72" stop-color="#e6e8ef"/><stop offset=".72" stop-color="#dcdfe8"/><stop offset="1" stop-color="#d3d7e2"/></linearGradient><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eceff4"/><stop offset="1" stop-color="#97999d"/></linearGradient>
+<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+<linearGradient id="rgb" x1="0" x2="1"><stop offset="0" stop-color="#7c6bff"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+<rect width="400" height="400" fill="url(#bg)"/><ellipse cx="200" cy="352" rx="128" ry="13" fill="#0b1020" opacity="0.1"/><g transform="translate(200 214) rotate(-9) scale(.86) translate(-200 -200)">
+<rect x="115" y="190" width="170" height="125" rx="54" fill="#e9ecf2"/>
+<rect x="115" y="190" width="170" height="125" rx="54" fill="url(#sheen)"/>
+<path d="M118 244 H282" stroke="#a3a5a9" stroke-width="3"/>
+<circle cx="200" cy="282" r="5" fill="#4ade80"/>
+<g transform="rotate(-14 160 140)"><ellipse cx="160" cy="128" rx="28" ry="32" fill="#f2f4f7"/><ellipse cx="160" cy="128" rx="13" ry="15" fill="#a3a5a9" opacity=".55"/><rect x="150" y="140" width="20" height="62" rx="10" fill="#f2f4f7"/></g>
+<g transform="rotate(14 240 140)"><ellipse cx="240" cy="128" rx="28" ry="32" fill="#f2f4f7"/><ellipse cx="240" cy="128" rx="13" ry="15" fill="#a3a5a9" opacity=".55"/><rect x="230" y="140" width="20" height="62" rx="10" fill="#f2f4f7"/></g></g>
+</svg>
